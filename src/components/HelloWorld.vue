@@ -84,19 +84,7 @@
 </template>
 
 <script>
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
-const store = new Vuex.Store({
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
-  }
-})
+import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'HelloWorld',
   data () {
@@ -104,9 +92,23 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+  computed: {
+    ...mapState([
+      'count'
+    ]),
+    ...mapGetters([
+      'doneTodos'
+    ])
+  },
+  methods: {
+    ...mapMutations([
+      'increment'
+    ])
+  },
   created () {
-    store.commit('increment')
-    console.log(store.state.count)
+    this.increment()
+    console.log(this.count)
+    console.log(this.doneTodos)
   }
 }
 </script>
