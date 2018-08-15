@@ -8,17 +8,17 @@ const state = {
 }
 
 const getters = {
-  checkLogin: (state) => {
+  checkLogin: state => {
     return state.isLogin
   }
 }
 
 const actions = {
-  login ({commit}, id) {
-    let userInfo = service.getUserInfo(id)
+  async login ({ commit }, id) {
+    var userInfo = await service.getUserInfo(id)
     commit(SET_USER_INFO, userInfo)
   },
-  loginOut ({commit}) {
+  loginOut ({ commit }) {
     commit(REMOVE_USER_INFO)
   }
 }

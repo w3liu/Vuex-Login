@@ -4,8 +4,17 @@ const users = [
 
 export default {
   getUserInfo (userid) {
-    var user = users.find(item => item.userId === userid)
-    return user
+    return new Promise(function (resolve, reject) {
+      setTimeout(() => {
+        var user = users.find(item => item.userId === userid)
+        if (user) {
+          resolve(user)
+        } else {
+          let err = 'error'
+          reject(err)
+        }
+      }, 2000)
+    })
   }
 
 }
